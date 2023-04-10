@@ -40,10 +40,10 @@ const playSong=()=>{
     //for github hosting use"https://arijitkayal-gm.github.io/Myhalothemeapp/${songIndex}.mp3"
     //for own ip while playing any song in console see the link it generates and use it here and replace name of mp3 with string interpolation
     if(audioElement.src==`https://arijitkayal-gm.github.io/Myhalothemeapp/songs/${songIndex}.mp3`){
-        //console.log(`matched`)
+        console.log(`matched`)
         audioElement.play();
     }else{
-        //console.log(`not matched`);
+        console.log(`not matched`);
         audioElement.src=`songs/${songIndex}.mp3`;
         audioElement.currentTime=0;
         audioElement.play();
