@@ -1,17 +1,26 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600;700&family=Heebo&display=swap');
-body{
-    background-color: #cbec7c;
+
+body {
+    background-image: url('Halobg.jpg');
+    background-size: cover;
+    /* Makes the image cover the entire container */
+    background-position: center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+    /* Prevents the image from repeating */
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
 }
-nav{
+
+nav {
     font-family: 'Heebo', sans-serif;
 }
-nav ul{
+
+nav ul {
     background-color: black;
     color: #cbec7c;
     display: flex;
@@ -20,36 +29,39 @@ nav ul{
     height: 65px;
 
 }
-nav ul li{
+
+nav ul li {
     padding: 0 12px;
 }
-.brand img{
+
+.brand img {
     width: 55px;
     padding: 0 8px;
 }
-.brand{
+
+.brand {
     display: flex;
     align-items: center;
     font-weight: bolder;
     font-size: 1.3rem;
-    
+
 }
 
-.container{
-    height: 76vh;
-    background-color: black;
-    color: black;
+.container {
+    min-height: calc(96vh - 195px);
+    height: auto;
+    padding-bottom: 130px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
     font-family: 'Heebo', sans-serif;
     display: flex;
     width: 70%;
     margin: 23px auto;
     border-radius: 12px;
     padding: 34px;
-    background-image: url('Halobg.jpg');
-    background-size: 100% 100%;
 }
 
-.bottom{
+.bottom {
     position: sticky;
     height: 130px;
     background-color: black;
@@ -61,99 +73,239 @@ nav ul li{
     flex-direction: column;
 }
 
-.icons{
+.icons {
     margin-top: 15px;
 }
 
-.icons i{
+.icons i {
     cursor: pointer;
-    
+
 }
 
-#progressBar{
+#progressBar {
     width: 80vw;
     cursor: pointer;
 }
 
-.songItemContainer{
+.songItemContainer {
     margin-top: 74px;
 }
 
-.songItem{
+.songItem {
     height: 50px;
     display: flex;
-    background-color: #daddd4;
-    
+    background-color: #ffffffd5;
+    display: flex;
     color: black;
-    margin: 12px 0;
+    margin: 10px 0;
+    padding: 10px;
     justify-content: space-between;
     align-items: center;
-    border-radius: 34px;
+    border-radius: 5px;
+    transition: transform 0.4s ease-in;
 }
-.songItem img{
+
+.songItem:hover {
+    transform: scale(1.05);
+}
+
+.songItem img {
     width: 40px;
     margin: 0 23px;
     border-radius: 32px;
 }
 
-.timeStamp{
+.timeStamp {
     margin: 0 23px;
 }
 
-.timeStamp i{
+.timeStamp i {
     cursor: pointer;
 }
-.songInfo{
+
+.songInfo {
     position: absolute;
     left: 10vw;
     font-family: 'Heebo', sans-serif;
 }
 
-.songInfo img{
+.songInfo img {
     opacity: 0;
     transition: opacity 0.4s ease-in;
+}
+
+.animated-container {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 200;
+    background-color: #00000000;
+    width: clamp(80px, 15vw, 150px);
+    height: clamp(80px, 15vw, 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 50%;
+    /* Enable subpixel rendering */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+.ripple-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    /* Pixel-snapping fix */
+    transform: translateZ(0);
+}
+
+.ripple-container span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1.5px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    /* Anti-aliasing magic */
+    outline: 0.5px solid transparent;
+    box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.3);
+
+}
+
+/* Add a pulsating center dot */
+.ripple-container::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Animation for the ripple effect */
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+        border-width: 1px;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+        border-width: 0.5px;
+    }
+
 }
 
 /* responsive */
 @media screen and (max-width: 480px) {
     body {
-      background-color: #e2742a;
+        background-color: #e2742a;
     }
 
-    nav ul{
+    nav ul {
         color: #e4b291;
     }
 
-    .container{
-        background-image: url('halosmall.jpg');
-        background-size: 100% 100%;
+    .container {
+        min-height: calc(100vh - 130px);
+        height: auto;
+        width: 100%;
+        margin: 0;
+        padding: 2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 130px;
+        box-sizing: border-box;
     }
 
-    .songItem{
-        width: 110%;
-        background-color: #e0cbbd;
+    .bottom {
+        position: fixed;
+        width: 100%;
+        z-index: 100;
     }
-    .songItem img{
-        width: 20px;
+
+    .songItem {
+        width: auto;
+        background-color: #fcfbfb9d;
+    }
+
+    .songItem img {
+        width: 30px;
         margin: 0 5px;
+        
     }
-    .songItemContainer{
+
+    .songItemContainer {
         margin: 8px auto;
     }
 
-    .songName{
+    .songName {
         font-size: small;
-    }
-    .timeStamp{
-        font-size: small;
-        
     }
 
-    .songInfo{
+    .timeStamp {
+        font-size: small;
+
+    }
+
+    .songInfo {
         position: relative;
         left: 10px;
         bottom: 5px;
-        
+
         font-family: 'Heebo', sans-serif;
     }
-  }
+
+    .animated-container {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .animated-container {
+        width: 100px;
+        height: 100px;
+        left: 8px;
+        bottom: 8px;
+    }
+
+    .ripple-container span {
+        border-width: 0.5px;
+        filter: blur(0.2px);
+    }
+
+    .ripple-container::before {
+        width: 8px;
+        height: 8px;
+        animation: pulse 3s ease-in-out infinite;
+    }
+}

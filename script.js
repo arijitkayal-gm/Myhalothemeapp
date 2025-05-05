@@ -8,6 +8,9 @@ let gif=document.getElementById("gif");
 let progressBar=document.getElementById("progressBar");
 let songItem=Array.from(document.getElementsByClassName("songItem"));
 let masterSongName=document.getElementById("masterSongName");
+const rippleSpans = document.querySelectorAll('.ripple-container span');
+const width = window.innerWidth; // Get the width of the window
+let animationState = true;
 let songs = [
     {songName: "Halo CE Theme", filepath: "song/1.mp3", coverPath: "covers/cover1.jpg", duration:"02:57"},
     {songName: "Halo CE Didactic Principal", filepath: "song/2.mp3", coverPath: "covers/cover1.jpg", duration:"01:47"},
@@ -34,6 +37,7 @@ songItem.forEach((element,i)=>{
 //function to play a song
 const playSong=()=>{
     console.log(songIndex,audioElement.currentTime,audioElement.src)
+    startRipple();
     masterSongName.innerHTML=songs[songIndex-1].songName;
     //if else to check if same song then play from where it was left
     //original pc url="http://127.0.0.1:5500/songs/${songIndex}.mp3"
@@ -60,6 +64,7 @@ const playSong=()=>{
 //function to pause song
 const pauseSong=()=>{
     audioElement.pause();
+    stopRipple();
     makeallPlay();
     arrayOfSongItemPlay[songIndex-1].classList.remove('fa-pause');//pseudo
     arrayOfSongItemPlay[songIndex-1].classList.add('fa-play');
@@ -154,3 +159,22 @@ document.getElementById('next').addEventListener('click',()=>{
     }
     playSong();
 })
+
+//ripple effect stop
+const stopRipple = () => {
+    rippleSpans.forEach(span => {
+        span.style.animation = 'none';
+        void span.offsetWidth; // Trigger reflow
+      });
+}
+//ripple effect start
+const startRipple = () => {
+    rippleSpans.forEach((span,index) => {
+        span.style.animation = 'ripple 3s ease-out infinite';
+        if (width <= 768) {
+            span.style.animationDelay = `${index * 0.5}s`;
+        }else{
+        span.style.animationDelay = `${index * 1}s`;
+        }
+      });
+}
