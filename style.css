@@ -32,6 +32,7 @@ nav ul {
 
 nav ul li {
     padding: 0 12px;
+    cursor: pointer;
 }
 
 .brand img {
@@ -86,6 +87,15 @@ nav ul li {
 .icons i:hover {
     color:  #ffb700;
 }
+.spare-icons i {
+    cursor: pointer;
+}
+.fa-toggle-on{
+    color: #ffb700 ;
+}
+.fa-toggle-off{
+    color: #ffffff;
+}
 
 .progressContainer {
     width: 80vw;
@@ -108,6 +118,14 @@ nav ul li {
 
 .songItemContainer {
     margin-top: 74px;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+.songItemContainer.fade-out {
+    opacity: 0;
+}
+.songItemContainer.fade-in {
+    opacity: 1;
 }
 
 .songItem {
